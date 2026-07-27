@@ -32,7 +32,7 @@ include_directories(
   ${YDLIDAR_SDK_INCLUDE_DIRS})
 
 #link library directories
-link_directories(${YDLIDAR_SDK_LIBRARY_DIRS})
+link_directories(${YDLIDAR_SDK_LIBRARY_DIRS} ${ydlidar_sdk_DIR}/../../../lib)
 
 #---------------------------------------------------------------------------------------
 # generate excutable and add libraries

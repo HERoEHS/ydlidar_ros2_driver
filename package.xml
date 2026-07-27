@@ -16,6 +16,8 @@
   <build_depend>visualization_msgs</build_depend>
   <build_depend>geometry_msgs</build_depend>
   <build_depend>std_srvs</build_depend>
+  <build_depend>ydlidar_sdk</build_depend>
+  <exec_depend>ydlidar_sdk</exec_depend>
 
   <exec_depend>rclcpp</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
