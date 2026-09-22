@@ -13,7 +13,7 @@ def generate_launch_description():
         package="ydlidar_ros2_driver",
         executable="ydlidar_ros2_driver_node",
         name="ydlidar_ros2_driver_node",
-        namespace="lidar_front",
+        namespace="ydlidar_front",
         output="screen",
         emulate_tty=True,
         parameters=[os.path.join(share_dir, "params", "TminiPro_front.yaml")],
@@ -23,7 +23,7 @@ def generate_launch_description():
         package="ydlidar_ros2_driver",
         executable="ydlidar_ros2_driver_node",
         name="ydlidar_ros2_driver_node",
-        namespace="lidar_rear",
+        namespace="ydlidar_rear",
         output="screen",
         emulate_tty=True,
         parameters=[os.path.join(share_dir, "params", "TminiPro_rear.yaml")],
@@ -33,7 +33,7 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         name="static_tf_pub_laser_front",
-        arguments=["--x", "0.44", "--y", "0", "--z", "0",
+        arguments=["--x", "0.35", "--y", "0.30", "--z", "0.09",
                    "--roll", "0", "--pitch", "3.14159265359", "--yaw", "0",
                    "--frame-id", "base_link", "--child-frame-id", "laser_front_frame"],
     )
@@ -42,8 +42,8 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         name="static_tf_pub_laser_rear",
-        arguments=["--x", "-0.44", "--y", "0", "--z", "0",
-                   "--roll", "3.14159265359", "--pitch", "0", "--yaw", "0",
+        arguments=["--x", "-0.51", "--y", "-0.30", "--z", "0.09",
+                   "--roll", "3.14159265359", "--pitch", "0", "--yaw", "3.14159265359",
                    "--frame-id", "base_link", "--child-frame-id", "laser_rear_frame"],
     )
     

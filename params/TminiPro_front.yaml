@@ -1,4 +1,4 @@
-lidar_front/ydlidar_ros2_driver_node:
+ydlidar_front/ydlidar_ros2_driver_node:
   ros__parameters:
     port: /dev/ydlidar_front
     frame_id: laser_front_frame
@@ -16,8 +16,8 @@ lidar_front/ydlidar_ros2_driver_node:
     isSingleChannel: false
     intensity: true
     support_motor_dtr: false
-    angle_max: 180.0
-    angle_min: -180.0
+    angle_max: 147.0
+    angle_min: -123.0
     range_max: 12.0
     range_min: 0.03
     frequency: 10.0
