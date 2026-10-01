@@ -1,0 +1,25 @@
+# ALICE M2 2D lidar mounts: parent_frame -> frame_id, static_transform_publisher
+# convention (x y z [m], roll pitch yaw [rad], R = Rz(yaw) Ry(pitch) Rx(roll)).
+# Read by launch/ydlidar_dual.launch.py (override with extrinsics_file:=).
+alice_m2_lidar_extrinsics:
+  parent_frame: base_link
+  lidars:
+    front:
+      frame_id: laser_front_frame
+      x: 0.3458
+      y: -0.297
+      z: 0.0813
+      roll: 0.0
+      pitch: 3.141592
+      yaw: 0.315931     # interim: scan alignment onto the rear lidar after the unit swap (+-0.3 deg)
+    rear:
+      frame_id: laser_rear_frame
+      x: -0.4858
+      y: 0.297
+      z: 0.0813
+      roll: 0.0
+      pitch: 3.141592
+      yaw: 3.48350265   # wall-referenced 2026-10-01 (robot right frame flush, -0.04 deg check)
+  history:
+    - date: "2026-10-01"
+      note: "moved out of ydlidar_dual.launch.py; front x 0.4158 -> 0.3458 (measured), yaws wall/scan-calibrated"
