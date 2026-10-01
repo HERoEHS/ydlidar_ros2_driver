@@ -33,8 +33,8 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         name="static_tf_pub_laser_front",
-        arguments=["--x", "0.35", "--y", "0.30", "--z", "0.09",
-                   "--roll", "0", "--pitch", "3.14159265359", "--yaw", "0",
+        arguments=["--x", "0.4158", "--y", "-0.297", "--z", "0.0813",
+                   "--roll", "0", "--pitch", "3.141592", "--yaw", "0.349066",
                    "--frame-id", "base_link", "--child-frame-id", "laser_front_frame"],
     )
     
@@ -42,8 +42,8 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         name="static_tf_pub_laser_rear",
-        arguments=["--x", "-0.51", "--y", "-0.30", "--z", "0.09",
-                   "--roll", "3.14159265359", "--pitch", "0", "--yaw", "3.14159265359",
+        arguments=["--x", "-0.4858", "--y", "0.297", "--z", "0.0813",
+                   "--roll", "0", "--pitch", "3.141592", "--yaw", "3.49066",
                    "--frame-id", "base_link", "--child-frame-id", "laser_rear_frame"],
     )
     
