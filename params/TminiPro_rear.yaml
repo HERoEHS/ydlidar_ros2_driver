@@ -1,7 +1,7 @@
 ydlidar_rear/ydlidar_ros2_driver_node:
   ros__parameters:
     port: /dev/ydlidar_rear
-    frame_id: laser_rear_frame
+    frame_id: rear_lidar_link  # the URDF link (alice_common m2_sensors.xacro)
     ignore_array: "17,110"
     baudrate: 230400
     lidar_type: 1

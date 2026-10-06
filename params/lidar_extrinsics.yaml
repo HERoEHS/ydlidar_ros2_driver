@@ -1,11 +1,15 @@
 # ALICE M2 2D lidar mounts: parent_frame -> frame_id, static_transform_publisher
 # convention (x y z [m], roll pitch yaw [rad], R = Rz(yaw) Ry(pitch) Rx(roll)).
-# Read by launch/ydlidar_dual.launch.py (override with extrinsics_file:=).
+# Read by launch/ydlidar_dual.launch.py only with publish_mount_tf:=true, i.e.
+# when the lidars run without the base launch. Normally the base launch
+# publishes these mounts from the URDF (alice_common m2_sensors.xacro) with the
+# robot's calibration (alice_parameters robot_N/sensor_extrinsics.yaml), which
+# is where calibrated values go (2026-10-06).
 alice_m2_lidar_extrinsics:
   parent_frame: base_link
   lidars:
     front:
-      frame_id: laser_front_frame
+      frame_id: front_lidar_link
       x: 0.3458
       y: -0.297
       z: 0.0813
@@ -13,7 +17,7 @@ alice_m2_lidar_extrinsics:
       pitch: 3.141592
       yaw: 0.315931     # interim: scan alignment onto the rear lidar after the unit swap (+-0.3 deg)
     rear:
-      frame_id: laser_rear_frame
+      frame_id: rear_lidar_link
       x: -0.4858
       y: 0.297
       z: 0.0813

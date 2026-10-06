@@ -24,6 +24,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp/time_source.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
+#include "std_msgs/msg/float32.hpp"
 #include "std_srvs/srv/empty.hpp"
 #include <vector>
 #include <iostream>
@@ -52,6 +53,20 @@ int main(int argc, char *argv[]) {
   laser.setlidaropt(LidarPropIgnoreArray, str_optvalue.c_str(), str_optvalue.size());
 
   std::string frame_id = node->declare_parameter<std::string>("frame_id", "laser_frame");
+
+  /// Range offset [m]: this unit's measured minus true range, subtracted from
+  /// every return (per robot: aeirobot_sensor_calibration finds it,
+  /// ydlidar_dual.launch.py robot_id:= passes it). Published once, latched, on
+  /// range_offset so a recording carries what was applied.
+  const float range_offset = static_cast<float>(node->declare_parameter<double>("range_offset", 0.0));
+  auto range_offset_pub = node->create_publisher<std_msgs::msg::Float32>(
+    "range_offset", rclcpp::QoS(1).transient_local());
+  std_msgs::msg::Float32 range_offset_msg;
+  range_offset_msg.data = range_offset;
+  range_offset_pub->publish(range_offset_msg);
+  if (range_offset != 0.0f) {
+    RCLCPP_INFO(node->get_logger(), "[YDLIDAR INFO] range offset %+.4f m subtracted", range_offset);
+  }
 
   //////////////////////int property/////////////////
   /// lidar baudrate
@@ -201,7 +216,14 @@ int main(int argc, char *argv[]) {
       {
         int index = std::ceil((scan.points[i].angle - scan.config.min_angle)/scan.config.angle_increment);
         if(index >=0 && index < size) {
-          scan_msg->ranges[index] = scan.points[i].range;
+          float range = scan.points[i].range;
+          if (range > 0.0f && range_offset != 0.0f) {
+            range -= range_offset;
+            if (range < scan.config.min_range) {
+              range = 0.0f;  // what the SDK reports for no return
+            }
+          }
+          scan_msg->ranges[index] = range;
           scan_msg->intensities[index] = scan.points[i].intensity;
         }
       }

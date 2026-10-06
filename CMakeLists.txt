@@ -19,6 +19,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 ############## YDLIDAR SDK START#####################################
 #find ydlidar_sdk package
@@ -45,6 +46,7 @@ add_executable(${PROJECT_NAME}_node
 ament_target_dependencies(${PROJECT_NAME}_node
     "rclcpp"
     "sensor_msgs"
+    "std_msgs"
     "visualization_msgs"
     "geometry_msgs"
     "std_srvs"
