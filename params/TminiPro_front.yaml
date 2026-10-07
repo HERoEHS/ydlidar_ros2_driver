@@ -2,7 +2,9 @@ ydlidar_front/ydlidar_ros2_driver_node:
   ros__parameters:
     port: /dev/ydlidar_front
     frame_id: front_lidar_link  # the URDF link (alice_common m2_sensors.xacro)
-    ignore_array: "17,110"
+    # Body occlusion in scan angles [deg]. 110 -> 112 (2026-10-07): the beam at 110.3 deg
+    # grazed the body edge and gave a point 0.15 m away in 3-6 % of the scans, on both lidars.
+    ignore_array: "17,112"
     baudrate: 230400
     lidar_type: 1
     device_type: 0
