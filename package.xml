@@ -26,6 +26,8 @@
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>std_srvs</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <!-- launch/ydlidar_dual.launch.py 가 호기별 거리 오프셋(config/alice_m2/robot_N/sensor_intrinsics.yaml)을 읽는다 -->
+  <exec_depend>alice_parameters</exec_depend>
 
   <test_depend>ament_cmake_gtest</test_depend>
   <test_depend>ament_lint_auto</test_depend>
