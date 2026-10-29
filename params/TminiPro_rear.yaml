@@ -4,7 +4,11 @@ ydlidar_rear/ydlidar_ros2_driver_node:
     frame_id: rear_lidar_link  # the URDF link (alice_common m2_sensors.xacro)
     # Body occlusion in scan angles [deg]. 110 -> 112 (2026-10-07): the beam at 110.3 deg
     # grazed the body edge and gave a point 0.15 m away in 3-6 % of the scans, on both lidars.
-    ignore_array: "17,112"
+    # 112 -> 115, rear only (2026-10-29): the beams at 112.9-114.5 deg hit the body 0.36-0.38 m away
+    # (2.5 cm inside the footprint rear edge) at the same body spot in three stops at different
+    # places (0.06-0.71 points a scan). The front lidar showed none. The body blocks that
+    # direction at 0.37 m anyway, so nothing beyond it is lost.
+    ignore_array: "17,115"
     baudrate: 230400
     lidar_type: 1
     device_type: 0
